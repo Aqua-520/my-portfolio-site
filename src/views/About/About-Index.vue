@@ -1,6 +1,10 @@
 <script setup>
 import { ref } from 'vue'
+defineOptions({
+  name: 'AboutView',
+})
 
+// 1. 个人信息：用 Map 结构方便循环渲染
 const userInfo = ref({
   name: '汪宸宇',
   email: 'wcy843708301@gmail.com',
@@ -9,153 +13,272 @@ const userInfo = ref({
   address: '湖北省荆门市',
 })
 
+// 定义一个 label 映射，让显示更友好
+const infoLabels = {
+  name: '姓名',
+  email: '邮箱',
+  wechat: '微信',
+  github: 'Github',
+  address: '籍贯',
+}
+
+// 2. 教育背景：增加 showName 控制，城西国际大学 Logo 自带文字则设为 false
 const educationList = ref([
   {
     pic: 'src/assets/picture/长工职logo.webp',
     school: '长江工程职业技术学院',
     degree: '专科',
     major: '计算机网络',
+    tag: '统招',
+  },
+  {
+    pic: 'src/assets/picture/蓝色城西logo.png',
+    school: '城西国际大学',
+    degree: '本科/学部',
+    major: '観光学',
+    tag: '留学',
   },
 ])
 </script>
 
 <template>
-  <div class="resume-container">
-    <section class="info-section">
-      <h2 class="section-title">个人信息</h2>
-      <!-- 
-        个人信息两栏布局
-      -->
-      <div class="info-grid">
-        <div class="info-item">
-          <span class="label">姓名:</span>
-          <span class="value emphasis">{{ userInfo.name }}</span>
-        </div>
-        <div class="info-item">
-          <span class="label">邮箱:</span>
-          <span class="value">{{ userInfo.email }}</span>
-        </div>
-        <div class="info-item">
-          <span class="label">微信:</span>
-          <span class="value">{{ userInfo.wechat }}</span>
-        </div>
-        <div class="info-item">
-          <span class="label">github:</span>
-          <a :href="userInfo.github" class="value link" target="_blank">{{ userInfo.github }}</a>
-        </div>
-        <div class="info-item full-width">
-          <span class="label">出生:</span>
-          <span class="value">{{ userInfo.address }}</span>
-        </div>
+  <div class="sub-page-container">
+    <header class="resume-header">
+      <div class="title-wrapper">
+        <h2 class="main-title">教育与背景</h2>
+        <div class="title-line"></div>
       </div>
-    </section>
-    <!-- 分割线 -->
-    <hr class="divider" />
+    </header>
 
-    <section class="edu-section">
-      <h2 class="section-title">教育背景</h2>
-      <!-- 教育背景容器 -->
-      <div class="edu-content" v-for="(item, index) in educationList" :key="index">
-        <img :src="item.pic" alt="School Logo" class="school-logo" />
-        <div class="edu-text">
-          <span class="school-name">{{ item.school }}</span>
-          <span class="separator">,</span>
-          <span class="degree">{{ item.degree }}</span>
-          <span class="major">{{ item.major }}</span>
+    <div class="resume-card">
+      <section class="info-section">
+        <div class="section-tag">Basic Info</div>
+        <div class="info-grid">
+          <div
+            class="info-item"
+            v-for="(val, key) in userInfo"
+            :key="key"
+            :class="{ 'full-row': key === 'github' }"
+          >
+            <span class="label">{{ infoLabels[key] }}:</span>
+
+            <template v-if="key === 'github'">
+              <a :href="val" target="_blank" class="value link-effect">{{ val }}</a>
+            </template>
+            <template v-else>
+              <span class="value" :class="{ 'name-style': key === 'name' }">{{ val }}</span>
+            </template>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="edu-section">
+        <div class="section-tag">Education</div>
+        <div class="edu-column">
+          <div class="edu-card" v-for="(item, index) in educationList" :key="index">
+            <div class="logo-wrapper">
+              <img :src="item.pic" class="school-logo" />
+            </div>
+
+            <div class="edu-content">
+              <div class="edu-main">
+                <span class="school-name">{{ item.school }}</span>
+                <span class="degree-badge">{{ item.degree }}</span>
+                <span class="major-name">{{ item.major }}</span>
+              </div>
+              <div class="edu-sub">
+                <span class="type-tag">{{ item.tag }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.resume-container {
-  max-width: 800px;
+/* 容器适配二级路由，增加丝滑的入场感 */
+.sub-page-container {
   margin: 0 auto;
-  /* padding: 40px; */
-  font-family:
-    'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial,
-    sans-serif;
-  color: #333;
+  animation: fadeIn 0.5s ease-out;
 }
 
-.section-title {
-  font-size: 28px;
-  font-weight: 500;
-  margin-bottom: 30px;
-  color: #1a1a1a;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* 个人信息网格布局 */
+.resume-header {
+  margin-bottom: 25px;
+}
+
+.main-title {
+  font-size: 26px;
+  color: #2c3e50;
+  margin: 0;
+  font-weight: 600;
+}
+
+.title-line {
+  width: 40px;
+  height: 4px;
+  /* 替换为粉色 */
+  background: #ff69b4;
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* 卡片容器 */
+.resume-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 40px;
+  border: 1px solid #f0f2f5;
+}
+
+.section-tag {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #bdc3c7;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* 个人信息布局 */
 .info-grid {
   display: grid;
-  grid-template-columns: 1fr 1.5fr; /* 左右两栏比例 */
-  gap: 15px 0;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
-.info-item {
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-}
-
-.full-width {
+.full-row {
   grid-column: span 2;
 }
 
 .label {
-  font-weight: bold;
+  font-weight: 600;
+  color: #34495e;
   margin-right: 12px;
-  min-width: 50px;
 }
 
 .value {
-  color: #999; /* 模仿图中较浅的灰色 */
+  color: #7f8c8d;
 }
 
-.emphasis {
-  color: #666; /* 姓名颜色稍深 */
+.name-style {
+  color: #2c3e50;
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
-.link {
-  color: #ff6b81; /* 模仿图中 GitHub 的粉色链接 */
+.link-effect {
+  /* 链接修改为粉色 */
+  color: #ff69b4;
   text-decoration: none;
+  transition: color 0.3s;
+}
+
+.link-effect:hover {
+  /* 悬停稍微减淡 */
+  color: #ff85c0;
+  /* text-decoration: underline; */
 }
 
 .divider {
-  border: none;
-  border-top: 1px solid #eee;
+  height: 1px;
+  background: linear-gradient(to right, #eee, transparent);
   margin: 40px 0;
 }
 
-/* 教育背景布局 */
-.edu-content {
+/* 教育项布局 */
+.edu-card {
   display: flex;
   align-items: center;
-  gap: 20px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  transition: background 0.3s;
+}
+
+.edu-card:hover {
+  /* 悬停背景改为极浅粉色 */
+  background: #fffafa;
+}
+
+.logo-wrapper {
+  width: 140px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px;
 }
 
 .school-logo {
-  width: 120px;
-  height: 120px;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
-.edu-text {
-  font-size: 22px;
-  color: #333;
+.edu-main {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .school-name {
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
 }
 
-.separator {
-  margin: 0 10px;
+.degree-badge {
+  /* 徽章背景改为浅粉色，文字改为深粉色 */
+  background: #fff0f6;
+  color: #ff69b4;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 13px;
 }
 
-.degree,
-.major {
-  margin-left: 10px;
+.major-name {
+  color: #606266;
+  font-size: 17px;
+}
+
+.type-tag {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #909399;
+  border: 1px solid #e4e7ed;
+  padding: 1px 8px;
+  border-radius: 4px;
+}
+
+/* 手机端适配 */
+@media (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  .edu-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .logo-wrapper {
+    margin-bottom: 15px;
+  }
 }
 </style>

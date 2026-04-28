@@ -37,8 +37,10 @@ const menuList = [
         <!-- 右侧二级路由出口 -->
         <div class="right-content">
           <router-view v-slot="{ Component }">
-            <transition name="page-slide" mode="out-in">
-              <component :is="Component" />
+            <transition name="page-slide">
+              <keep-alive>
+                <component :is="Component" :key="$route.path" />
+              </keep-alive>
             </transition>
           </router-view>
         </div>
@@ -163,26 +165,45 @@ const menuList = [
 }
 
 /* --- 右侧内容区 --- */
+/* 1. 给父容器开启相对定位 */
 .right-content {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 50px;
-  background-color: white;
+  scrollbar-gutter: stable both-edges;
+  position: relative; /* 新增：作为绝对定位的参考基准 */
+}
+
+/* 2. 给参与过渡的直接子元素开启绝对定位 */
+.right-content > div {
+  position: absolute; /* 新增：脱离文档流，新旧组件重叠 */
+  top: 50px; /* 对应父容器的 padding-top */
+  left: 50px; /* 对应父容器的 padding-left */
+  width: calc(100% - 100px); /* 减去左右 padding 的宽度 (50px * 2) */
+  min-height: calc(100% - 100px);
 }
 
 /* --- 切换动画 --- */
+/* 修改后的过渡动画 */
 .page-slide-enter-active,
 .page-slide-leave-active {
-  transition: all 0.3s ease-out;
+  /* 增加 will-change 优化性能 */
+  will-change: transform, opacity;
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 使用标准的 Material Design 减速曲线 */
 }
 
+/* 入场：从右侧稍微靠下的位置淡入，带一点点向上的漂浮感（可选） */
 .page-slide-enter-from {
   opacity: 0;
-  transform: translateX(10px);
+  transform: translateX(15px);
 }
 
+/* 离场：向左侧平滑淡出，不要位移太远 */
 .page-slide-leave-to {
   opacity: 0;
-  transform: translateX(-10px);
+  transform: translateX(-15px);
 }
 </style>

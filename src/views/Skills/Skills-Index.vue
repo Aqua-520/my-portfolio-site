@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+defineOptions({
+  name: 'SkillsView',
+})
 
 // 顶部环形进度条数据
 const progressData = ref([
@@ -52,6 +55,7 @@ const skillsData = ref([
 <template>
   <div class="skills-wrapper">
     <h2 class="module-title">擅长技术</h2>
+    <div class="title-line"></div>
 
     <div class="progress-section">
       <!-- 原型进度条 -->
@@ -95,6 +99,15 @@ const skillsData = ref([
 </template>
 
 <style scoped>
+.title-line {
+  width: 40px;
+  height: 4px;
+  /* 替换为粉色 */
+  background: #ff69b4;
+  margin-top: 8px;
+  margin-bottom: 30px;
+  border-radius: 2px;
+}
 .skills-wrapper {
   padding: 20px;
   font-family:
@@ -106,7 +119,7 @@ const skillsData = ref([
 .module-title {
   font-size: 22px;
   font-weight: 600;
-  margin-bottom: 40px;
+
   color: #2c3e50;
 }
 
