@@ -149,8 +149,13 @@ const educationList = ref([
   gap: 20px;
 }
 
-.full-row {
-  grid-column: span 2;
+@media (max-width: 600px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  .full-row {
+    grid-column: span 1;
+  }
 }
 
 .label {
@@ -161,6 +166,7 @@ const educationList = ref([
 
 .value {
   color: var(--text-sub);
+  word-break: break-all;
 }
 
 .name-style {
@@ -200,6 +206,7 @@ const educationList = ref([
   background: #fafafa;
   border-radius: 12px;
   border: 1px solid transparent;
+  transition: all var(--transition-base);
 }
 
 .logo-wrapper {
@@ -252,15 +259,26 @@ const educationList = ref([
 
 /* 手机端适配 */
 @media (max-width: 768px) {
-  .info-grid {
-    grid-template-columns: 1fr;
-  }
   .edu-card {
     flex-direction: column;
-    align-items: flex-start;
+    text-align: center;
+    padding: 20px;
+    gap: 15px;
   }
+
   .logo-wrapper {
-    margin-bottom: 15px;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+  }
+
+  .edu-main {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .degree-badge {
+    margin: 0 auto;
   }
 }
 </style>

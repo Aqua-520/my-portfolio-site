@@ -180,10 +180,47 @@ const projectHistory = ref([
   color: var(--primary-pink, #ff69b4);
 }
 
-/* 时间戳样式 */
-:deep(.el-timeline-item__timestamp) {
-  color: var(--primary-pink);
-  font-weight: 600;
-  font-size: 0.9rem;
+/* 响应式适配 */
+@media (max-width: 768px) {
+  .growth-timeline {
+    padding: 10px;
+  }
+
+  .project-detail-card {
+    padding: 15px;
+  }
+
+  .project-name {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .detail-section {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .section-label {
+    font-size: 0.9rem;
+  }
+
+  .section-text {
+    font-size: 0.85rem;
+  }
+
+  .experience-list li {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  :deep(.el-timeline-item__wrapper) {
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  :deep(.el-timeline-item__timestamp) {
+    font-size: 0.8rem;
+  }
 }
 </style>

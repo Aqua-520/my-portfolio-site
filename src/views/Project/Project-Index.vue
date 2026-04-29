@@ -110,6 +110,16 @@ const openLink = (url) => {
   font-size: 2.5rem;
   color: #2c3e50;
   margin-bottom: 10px;
+  transition: font-size var(--transition-base);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.8rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
 }
 
 .title span {

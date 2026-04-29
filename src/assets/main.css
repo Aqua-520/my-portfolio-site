@@ -13,10 +13,16 @@
   /* 辅助色与文本色 */
   --text-main: #2c3e50;
   --text-sub: #5e6d82;
-  --text-light: #bdc3c7;
-  --bg-main: #f0f2f5;
+  --text-light: #94a3b8; /* 调深一点，原为 #bdc3c7 对比度较低 */
+  --bg-main: #f8fafc;
   --bg-card: #ffffff;
-  --border-color: #f0f2f5;
+  --border-color: #e2e8f0;
+
+  /* 灰色系标准变量 (增强对比度) */
+  --gray-primary: #334155;
+  --gray-base: #64748b;
+  --gray-light: #f1f5f9;
+  --gray-dark: #1e293b;
 
   /* 动效规范 */
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -24,6 +30,29 @@
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   --hover-transform: translateY(-4px);
   --hover-shadow: 0 12px 30px var(--primary-pink-shadow);
+
+  /* 响应式断点 */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+
+  /* 响应式间距与字体 */
+  --content-padding: 50px;
+  --base-font-size: 16px;
+}
+
+@media (max-width: 992px) {
+  :root {
+    --content-padding: 24px;
+    --base-font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --content-padding: 16px;
+  }
 }
 
 /* 1. 基础重置：消除所有元素的默认内外边距 */
@@ -31,6 +60,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box; /* 让边框和内边距不撑大盒子 */
+}
+
+html {
+  font-size: var(--base-font-size);
 }
 
 /* 全局卡片悬停规范类 */

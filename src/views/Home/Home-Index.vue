@@ -131,6 +131,7 @@ onMounted(() => {
   background: linear-gradient(135deg, #ff69b4, #ffc0cb);
   box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
   margin-bottom: 30px;
+  transition: all var(--transition-base);
 }
 
 .avatar-img {
@@ -147,6 +148,7 @@ onMounted(() => {
   color: #2c3e50;
   margin-bottom: 10px;
   letter-spacing: 2px;
+  transition: font-size var(--transition-base);
 }
 
 .typewriter-box {
@@ -154,6 +156,7 @@ onMounted(() => {
   color: #666;
   height: 1.5em;
   margin-bottom: 30px;
+  transition: font-size var(--transition-base);
 }
 
 .typing-text {
@@ -178,25 +181,53 @@ onMounted(() => {
 }
 
 /* 描述文字 */
-/* 描述文字 */
 .description {
   max-width: 700px;
   line-height: 1.8;
   color: #5e6d82;
   font-size: 1rem;
   margin-bottom: 40px;
-
-  /* 关键修改部分 */
-  text-align: center; /* 首先保证文字水平居中 */
-  text-wrap: balance; /* 自动平衡每行字数，避免长短不一（现代浏览器支持） */
-  margin-left: auto; /* 配合 max-width 实现块级居中 */
+  text-align: center;
+  text-wrap: balance;
+  margin-left: auto;
   margin-right: auto;
-  word-break: break-all; /* 防止长英文单词撑开布局 */
+  word-break: break-all;
+  transition: font-size var(--transition-base);
 }
 
 .description b,
 .description strong {
   color: #ff69b4;
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+  .avatar-wrapper {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+  }
+
+  .user-name {
+    font-size: 1.8rem;
+  }
+
+  .typewriter-box {
+    font-size: 1rem;
+    height: 3em; /* 移动端可能折行 */
+  }
+
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-name {
+    font-size: 1.5rem;
+  }
 }
 
 /* 按钮样式 */
@@ -231,14 +262,14 @@ onMounted(() => {
 
 .btn-outline {
   background-color: transparent;
-  color: #888;
-  border: 1px solid #ddd;
+  color: var(--gray-base);
+  border: 1px solid var(--border-color);
 }
 
 .btn-outline:hover {
-  border-color: #ff69b4;
-  color: #ff69b4;
-  background: rgba(255, 105, 180, 0.05);
+  border-color: var(--primary-pink);
+  color: var(--primary-pink);
+  background: var(--primary-pink-alpha);
   transform: translateY(-2px);
 }
 

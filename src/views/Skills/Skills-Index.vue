@@ -145,6 +145,22 @@ const skillsData = ref([
   gap: 30px;
 }
 
+@media (max-width: 768px) {
+  .progress-section {
+    gap: 20px;
+  }
+  .progress-item {
+    width: 100px;
+  }
+  .chart-box {
+    width: 80px;
+    height: 80px;
+  }
+  .percentage-text {
+    font-size: 24px;
+  }
+}
+
 .progress-item {
   display: flex;
   flex-direction: column;
@@ -225,6 +241,28 @@ const skillsData = ref([
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .tag-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .group-label {
+    min-width: unset;
+    border-right: none;
+    border-bottom: 2px solid var(--primary-pink-lighter);
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+  }
+  .tags-list {
+    gap: 8px;
+  }
+  .skill-tag {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
 }
 
 .skill-tag {
