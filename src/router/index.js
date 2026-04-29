@@ -8,6 +8,7 @@ import AboutIndex from '@/views/About/About-Index.vue'
 import SkillsIndex from '@/views/Skills/Skills-Index.vue'
 import ProjectIndex from '@/views/Project/Project-Index.vue'
 import HobbiesIndex from '@/views/Hobbies/ Hobbies-Index.vue'
+import TimeLineIndex from '@/views/Timeline/TimeLine-Index.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -34,7 +35,9 @@ const router = createRouter({
         },
         // 学习时间线
         {
-          path: '',
+          path: '/timeline',
+          name: 'TimeLineView',
+          component: TimeLineIndex,
         },
       ],
     },

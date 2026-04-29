@@ -11,7 +11,7 @@ const projects = ref([
     date: '2026.03',
     image: new URL('@/assets/picture/小兔鲜宣传图.png', import.meta.url).href,
     demoUrl: '',
-    githubUrl: '',
+    githubUrl: 'https://github.com/Aqua-520/xtx-shop-pc',
   },
   {
     title: '个人作品集网站',
@@ -78,14 +78,16 @@ const openLink = (url) => {
     </div>
 
     <div class="contact-banner">
-      <h3>万事开头难，但我已准备好起跑</h3>
-      <p>
-        作为一名非科班转码的应届生，我深知入行的机会弥足珍贵。<br />
-        我拥有极强的自驱动力和抗压性，已准备好将全部精力投入到实战中。希望能获得一次面试机会，向您展示我的可能性！
-      </p>
-      <el-button class="banner-btn" size="large" @click="$router.push('/about')"
-        >给予机会 / 联系我</el-button
-      >
+      <div class="banner-content">
+        <h3>万事开头难，但我已准备好起跑</h3>
+        <p>
+          作为一名非科班转码的应届生，我深知入行的机会弥足珍贵。<br />
+          我拥有极强的自驱动力和抗压性，已准备好将全部精力投入到实战中。
+        </p>
+      </div>
+      <el-button class="banner-btn" size="large" @click="$router.push('/about')">
+        给予机会 / 联系我
+      </el-button>
     </div>
   </div>
 </template>
@@ -256,30 +258,103 @@ const openLink = (url) => {
   color: #b0b0b0;
 }
 
-/* 底部 Banner */
+/* 底部 Banner 重写 */
 .contact-banner {
-  max-width: 800px;
-  margin: 80px auto 0;
-  background: linear-gradient(135deg, #ff69b4 0%, #ffc0cb 100%);
+  max-width: 1000px; /* 稍微加宽一点更有高级感 */
+  margin: 100px auto 40px;
+  position: relative;
+  overflow: hidden;
+
+  /* 采用极浅的粉色背景，配合精致的边框 */
+  background: var(--primary-pink-lighter, #fff0f6);
+  border: 1px solid rgba(255, 105, 180, 0.2);
   padding: 30px;
-  border-radius: 30px;
-  text-align: center;
-  color: white;
-  box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+  border-radius: 24px;
+
+  /* 布局改为左右或上下居中 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* 装饰性光晕，增加艺术感 */
+.contact-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 105, 180, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+  text-align: left;
+  flex: 1;
+}
+
+.contact-banner h3 {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin: 0 0 12px 0;
+  font-weight: 700;
+}
+
+.contact-banner p {
+  color: #5e6d82;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-left: 10px;
+  max-width: 600px;
+}
+
+/* 按钮样式升级 */
 .banner-btn {
-  margin-top: 20px;
-  background-color: white !important;
-  color: #ff69b4 !important;
+  position: relative;
+  z-index: 1;
+  height: 50px !important;
+  padding: 0 20px !important;
+  background-color: #ff69b4 !important;
+  color: white !important;
   border: none !important;
-  font-weight: bold !important;
-  border-radius: 25px !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3) !important;
+  transition: all 0.3s ease !important;
 }
 
+.banner-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(255, 105, 180, 0.4) !important;
+  background-color: #ff85c0 !important;
+}
+
+/* 移动端自适应 */
 @media (max-width: 768px) {
-  .project-grid {
-    grid-template-columns: 1fr;
+  .contact-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+    margin: 60px 20px 0;
+  }
+
+  .banner-content {
+    text-align: center;
+  }
+
+  .contact-banner p {
+    font-size: 0.95rem;
+  }
+
+  .banner-btn {
+    width: 100%;
   }
 }
 </style>

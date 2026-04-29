@@ -78,7 +78,7 @@ const menuList = [
 /* --- 左侧导航 --- */
 .left-nav {
   width: 100px;
-  background: #fdf6f6; /* 淡淡的粉色底 */
+  background: var(--primary-pink-lighter);
   border-right: 1px solid rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column; /* 垂直排列 logo 和 menu */
@@ -102,7 +102,7 @@ const menuList = [
   background-repeat: no-repeat;
 
   border-radius: 50%;
-  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+  box-shadow: 0 4px 10px var(--primary-pink-shadow);
 }
 
 .menu-list {
@@ -129,9 +129,9 @@ const menuList = [
   gap: 5px;
   padding: 22px 0;
   font-size: 13px;
-  color: #888;
+  color: var(--text-sub);
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
   position: relative;
 }
 
@@ -143,8 +143,8 @@ const menuList = [
 
 /* --- 路由选中效果 --- */
 .menu-list a.active {
-  color: #ff69b4;
-  background: rgba(255, 105, 180, 0.08);
+  color: var(--primary-pink);
+  background: var(--primary-pink-alpha);
 }
 
 /* 左侧激活条 */
@@ -155,14 +155,14 @@ const menuList = [
   top: 15%;
   height: 70%;
   width: 4px;
-  background-color: #ff69b4;
+  background-color: var(--primary-pink);
   border-radius: 0 4px 4px 0;
 }
 
 /* 悬停效果 */
 .menu-list a:hover:not(.active) {
-  color: #ff69b4;
-  background: rgba(255, 105, 180, 0.03);
+  color: var(--primary-pink);
+  background: var(--primary-pink-alpha);
 }
 
 /* --- 右侧内容区 --- */
@@ -185,25 +185,21 @@ const menuList = [
   min-height: calc(100% - 100px);
 }
 /* --- 切换动画 --- */
-/* 修改后的过渡动画 */
 .page-slide-enter-active,
 .page-slide-leave-active {
-  /* 增加 will-change 优化性能 */
   will-change: transform, opacity;
   transition:
-    opacity 0.3s ease-out,
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 使用标准的 Material Design 减速曲线 */
+    opacity var(--transition-slow),
+    transform var(--transition-slow);
 }
 
-/* 入场：从右侧稍微靠下的位置淡入，带一点点向上的漂浮感（可选） */
 .page-slide-enter-from {
   opacity: 0;
-  transform: translateX(15px);
+  transform: translateX(20px);
 }
 
-/* 离场：向左侧平滑淡出，不要位移太远 */
 .page-slide-leave-to {
   opacity: 0;
-  transform: translateX(-15px);
+  transform: translateX(-20px);
 }
 </style>

@@ -1,11 +1,67 @@
 /* 导入tailwindcss */
 @import 'tailwindcss';
 
+:root {
+  /* 核心粉色系变量 */
+  --primary-pink: #ff69b4;
+  --primary-pink-light: #ff85c0;
+  --primary-pink-lighter: #fff0f6;
+  --primary-pink-dark: #e05297;
+  --primary-pink-alpha: rgba(255, 105, 180, 0.1);
+  --primary-pink-shadow: rgba(255, 105, 180, 0.2);
+
+  /* 辅助色与文本色 */
+  --text-main: #2c3e50;
+  --text-sub: #5e6d82;
+  --text-light: #bdc3c7;
+  --bg-main: #f0f2f5;
+  --bg-card: #ffffff;
+  --border-color: #f0f2f5;
+
+  /* 动效规范 */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --hover-transform: translateY(-4px);
+  --hover-shadow: 0 12px 30px var(--primary-pink-shadow);
+}
+
 /* 1. 基础重置：消除所有元素的默认内外边距 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box; /* 让边框和内边距不撑大盒子 */
+}
+
+/* 全局卡片悬停规范类 */
+.hover-lift {
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.hover-lift:hover {
+  transform: var(--hover-transform);
+  box-shadow: var(--hover-shadow);
+  border-color: var(--primary-pink-light);
+}
+
+/* 全局按钮规范类 */
+.btn-pink {
+  background-color: var(--primary-pink);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.btn-pink:hover {
+  background-color: var(--primary-pink-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--primary-pink-shadow);
 }
 
 /* 2. 根元素设置：保证页面撑满全屏 */

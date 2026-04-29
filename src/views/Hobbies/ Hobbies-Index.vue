@@ -4,7 +4,7 @@
 const hobbies = [
   {
     id: 'travel',
-    title: '全球探索 / 环游世界',
+    title: '探索未知 / 环游世界',
     desc: '热衷于探索全球版图，在步履不停中追求更先进、更公平的高维度生活环境。比起安于现状，我更向往那种充满活力与自由的秩序，在跨越边界的过程中，不断寻找更广阔的自我表达空间。',
     icon: IconLucidePlane,
     tags: ['#无界探索', '#追求卓越', '#全球视野'],
@@ -76,12 +76,13 @@ const hobbies = [
   border: 1px solid #fff0f6;
   transition:
     transform 0.3s,
-    border-color 0.3s;
+    box-shadow 0.3s;
 }
 
 .hobby-card:hover {
-  transform: translateX(10px);
-  border-color: #ff69b4;
+  transform: translateY(-5px);
+  /* border-color: #ff69b4; */
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
 }
 
 .hobby-icon {

@@ -76,7 +76,7 @@ const educationList = ref([
       <section class="edu-section">
         <div class="section-tag">Education</div>
         <div class="edu-column">
-          <div class="edu-card" v-for="(item, index) in educationList" :key="index">
+          <div class="edu-card hover-lift" v-for="(item, index) in educationList" :key="index">
             <div class="logo-wrapper">
               <img :src="item.pic" class="school-logo" />
             </div>
@@ -102,18 +102,6 @@ const educationList = ref([
 /* 容器适配二级路由，增加丝滑的入场感 */
 .sub-page-container {
   margin: 0 auto;
-  animation: fadeIn 0.5s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .resume-header {
@@ -122,7 +110,7 @@ const educationList = ref([
 
 .main-title {
   font-size: 26px;
-  color: #2c3e50;
+  color: var(--text-main);
   margin: 0;
   font-weight: 600;
 }
@@ -130,26 +118,25 @@ const educationList = ref([
 .title-line {
   width: 40px;
   height: 4px;
-  /* 替换为粉色 */
-  background: #ff69b4;
+  background: var(--primary-pink);
   margin-top: 8px;
   border-radius: 2px;
 }
 
 /* 卡片容器 */
 .resume-card {
-  background: #fff;
+  /* background: var(--bg-card); */
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  padding: 40px 40px 0;
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); */
+  padding: 20px;
   margin-bottom: 60px;
-  border: 1px solid #f0f2f5;
+  /* border: 1px solid var(--border-color); */
 }
 
 .section-tag {
   font-size: 12px;
   text-transform: uppercase;
-  color: #bdc3c7;
+  color: var(--text-light);
   letter-spacing: 2px;
   margin-bottom: 20px;
   font-weight: bold;
@@ -168,104 +155,99 @@ const educationList = ref([
 
 .label {
   font-weight: 600;
-  color: #34495e;
+  color: var(--text-main);
   margin-right: 12px;
 }
 
 .value {
-  color: #7f8c8d;
+  color: var(--text-sub);
 }
 
 .name-style {
-  color: #2c3e50;
+  color: var(--text-main);
   font-size: 1.1em;
   font-weight: bold;
 }
 
 .link-effect {
-  /* 链接修改为粉色 */
-  color: #ff69b4;
+  color: var(--primary-pink);
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color var(--transition-base);
 }
 
 .link-effect:hover {
-  /* 悬停稍微减淡 */
-  color: #ff85c0;
-  /* text-decoration: underline; */
+  color: var(--primary-pink-light);
 }
 
 .divider {
   height: 1px;
-  background: linear-gradient(to right, #eee, transparent);
+  background: var(--border-color);
   margin: 40px 0;
 }
 
-/* 教育项布局 */
+/* 教育背景卡片 */
+.edu-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .edu-card {
   display: flex;
   align-items: center;
-  padding: 15px;
-  margin-bottom: 20px;
+  gap: 24px;
+  padding: 24px;
+  background: #fafafa;
   border-radius: 12px;
-  transition: background 0.3s;
-}
-
-.edu-card:hover {
-  /* 悬停背景改为极浅粉色 */
-  background: #fffafa;
+  border: 1px solid transparent;
 }
 
 .logo-wrapper {
-  width: 140px;
-  height: 90px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 30px;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  background: white;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .school-logo {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
 .edu-main {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
 }
 
 .school-name {
-  font-size: 18px;
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--text-main);
+  font-size: 1.1rem;
 }
 
 .degree-badge {
-  /* 徽章背景改为浅粉色，文字改为深粉色 */
-  background: #fff0f6;
-  color: #ff69b4;
   padding: 2px 10px;
+  background: var(--primary-pink-lighter);
+  color: var(--primary-pink);
   border-radius: 4px;
-  font-size: 13px;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 .major-name {
-  color: #606266;
-  font-size: 17px;
+  color: var(--text-sub);
 }
 
 .type-tag {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 12px;
-  color: #909399;
-  border: 1px solid #e4e7ed;
-  padding: 1px 8px;
-  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--text-light);
 }
 
 /* 手机端适配 */
