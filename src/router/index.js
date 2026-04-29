@@ -7,6 +7,7 @@ import HomeIndex from '@/views/Home/Home-Index.vue'
 import AboutIndex from '@/views/About/About-Index.vue'
 import SkillsIndex from '@/views/Skills/Skills-Index.vue'
 import ProjectIndex from '@/views/Project/Project-Index.vue'
+import HobbiesIndex from '@/views/Hobbies/ Hobbies-Index.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -25,6 +26,16 @@ const router = createRouter({
         { path: '/skills', name: 'SkillsView', component: SkillsIndex },
         // 作品集
         { path: '/projects', name: 'ProjectsView', component: ProjectIndex },
+        // 爱好
+        {
+          path: '/hobbies',
+          name: 'HobbiesView',
+          component: HobbiesIndex,
+        },
+        // 学习时间线
+        {
+          path: '',
+        },
       ],
     },
   ],

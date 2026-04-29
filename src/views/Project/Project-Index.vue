@@ -9,9 +9,7 @@ const projects = ref([
       '基于 Vue 3 + Pinia 构建的全功能电商平台。实现了复杂的 SKU 规格选择逻辑、购物车本地与接口同步、以及完整的订单结算流程。',
     tags: ['Vue 3', 'Pinia', 'Sku', 'Element Plus'],
     date: '2026.03',
-    image:
-      'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=800&auto=format&fit=crop',
-    demoUrl: '',
+    image: 'src/assets/picture/小兔鲜宣传图.png',
     githubUrl: '',
   },
   {
@@ -21,9 +19,7 @@ const projects = ref([
       '使用 Vue 3 组合式 API 搭建的响应式个人门户。采用 Scoped CSS 确保样式隔离，集成粉色系视觉设计。',
     tags: ['Vue 3', 'Vite', 'Scoped CSS'],
     date: '2026.04',
-    image:
-      'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop',
-    demoUrl: '',
+    image: 'src/assets/picture/个人网站宣传图.png',
     githubUrl: '',
   },
 ])
@@ -44,12 +40,13 @@ const openLink = (url) => {
   </div>
   <div class="project-container">
     <div class="project-grid">
+      <!-- 几个卡片 -->
       <div v-for="(project, index) in projects" :key="index" class="project-card">
-        <div class="card-cover" @click="openLink(project.demoUrl)">
+        <div class="card-cover" @click="openLink(project.githubUrl)">
           <img v-if="project.image" :src="project.image" :alt="project.title" />
           <div v-else class="placeholder">Project Image</div>
           <div class="cover-mask">
-            <el-button class="pink-btn" round>预览项目</el-button>
+            <el-button class="pink-btn" round>查看仓库</el-button>
           </div>
         </div>
 
@@ -164,7 +161,7 @@ const openLink = (url) => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  object-position: left 41%;
 }
 
 .cover-mask {
