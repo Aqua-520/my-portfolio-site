@@ -180,6 +180,7 @@ const skillsData = ref([
   flex-direction: column;
   gap: 25px;
   margin-left: 20px;
+  margin-bottom: 60px;
 }
 
 .tag-group {

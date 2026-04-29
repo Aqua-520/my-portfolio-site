@@ -1,3 +1,6 @@
+/* 导入tailwindcss */
+@import 'tailwindcss';
+
 /* 1. 基础重置：消除所有元素的默认内外边距 */
 * {
   margin: 0;
@@ -58,30 +61,34 @@ body {
   overflow: hidden; /* 如果是做那种不滚动的卡片简历，建议加上这行 */
 }
 
-/* 修改右侧内容区的滚动条样式 */
-.right-content::-webkit-scrollbar {
-  width: 6px; /* 滚动条宽度 */
+/* 1. 针对 WebKit 内核浏览器 (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 6px; /* 纵向滚动条宽度 */
+  height: 6px; /* 横向滚动条高度 */
 }
 
-/* 滚动条轨道 */
-.right-content::-webkit-scrollbar-track {
+/* 轨道 */
+::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* 滚动条滑块 (Thumb) */
-.right-content::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 105, 180, 0.2); /* 默认半透明粉色 */
+/* 滑块 (Thumb) */
+::-webkit-scrollbar-thumb {
+  /* 默认半透明粉色 */
+  background-color: rgba(255, 105, 180, 0.3);
   border-radius: 10px;
-  transition: background-color 0.3s;
 }
 
 /* 鼠标悬停在滑块上时加深颜色 */
-.right-content::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 105, 180, 0.5); /* 悬停时粉色变深 */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 105, 180, 0.6); /* 悬停时粉色变深 */
 }
 
-/* 针对 Firefox 的适配 */
-.right-content {
+/* 2. 针对 Firefox 浏览器的全局适配 */
+* {
+  /* 滚动条变细 */
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 105, 180, 0.3) transparent;
+  scrollbar-color: rgba(255, 105, 180, 0.4) transparent; /* 滑块颜色 轨道颜色 */
 }
+
+/* --- 全局滚动条自定义结束 --- */

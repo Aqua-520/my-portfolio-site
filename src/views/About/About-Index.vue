@@ -142,7 +142,8 @@ const educationList = ref([
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  padding: 40px;
+  padding: 40px 40px 0;
+  margin-bottom: 60px;
   border: 1px solid #f0f2f5;
 }
 

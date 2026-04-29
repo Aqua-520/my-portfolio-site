@@ -6,9 +6,9 @@ const menuList = [
   { name: '首页', path: '/home', icon: Home },
   { name: '个人信息', path: '/about', icon: User },
   { name: '擅长技术', path: '/skills', icon: Wrench },
-  { name: '我的简历', path: '/resume', icon: FileText },
+  { name: '作品集', path: '/projects', icon: FileText },
   { name: '我的爱好', path: '/hobbies', icon: Heart },
-  { name: '点滴经历', path: '/experience', icon: Compass },
+  { name: '成长轨迹', path: '/timeline', icon: Compass },
 ]
 </script>
 
@@ -109,6 +109,7 @@ const menuList = [
 }
 
 .menu-list {
+  overflow-y: auto;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -119,13 +120,16 @@ const menuList = [
 .menu-list li {
   border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 }
+.menu-list li:last-child {
+  border-bottom: none;
+}
 
 .menu-list a {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
   padding: 22px 0;
   font-size: 13px;
   color: #888;
@@ -183,7 +187,6 @@ const menuList = [
   width: calc(100% - 100px); /* 减去左右 padding 的宽度 (50px * 2) */
   min-height: calc(100% - 100px);
 }
-
 /* --- 切换动画 --- */
 /* 修改后的过渡动画 */
 .page-slide-enter-active,
