@@ -9,7 +9,7 @@ const projects = ref([
       '基于 Vue 3 + Pinia 构建的全功能电商平台。实现了复杂的 SKU 规格选择逻辑、购物车本地与接口同步、以及完整的订单结算流程。',
     tags: ['Vue 3', 'Pinia', 'Sku', 'Element Plus'],
     date: '2026.03',
-    image: 'src/assets/picture/小兔鲜宣传图.png',
+    image: '@/assets/picture/小兔鲜宣传图.png',
     githubUrl: '',
   },
   {
@@ -19,7 +19,7 @@ const projects = ref([
       '使用 Vue 3 组合式 API 搭建的响应式个人门户。采用 Scoped CSS 确保样式隔离，集成粉色系视觉设计。',
     tags: ['Vue 3', 'Vite', 'Scoped CSS'],
     date: '2026.04',
-    image: 'src/assets/picture/个人网站宣传图.png',
+    image: '@/assets/picture/个人网站宣传图.png',
     githubUrl: '',
   },
 ])
