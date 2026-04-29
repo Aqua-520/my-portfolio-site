@@ -25,14 +25,14 @@ const infoLabels = {
 // 2. 教育背景：增加 showName 控制，城西国际大学 Logo 自带文字则设为 false
 const educationList = ref([
   {
-    pic: '@/assets/picture/长工职logo.webp',
+    pic: new URL('@/assets/picture/长工职logo.webp', import.meta.url).href,
     school: '长江工程职业技术学院',
     degree: '专科',
     major: '计算机网络',
     tag: '统招',
   },
   {
-    pic: '@/assets/picture/蓝色城西logo.png',
+    pic: new URL('@/assets/picture/蓝色城西logo.png', import.meta.url).href,
     school: '城西国际大学',
     degree: '本科/学部',
     major: '観光学',
