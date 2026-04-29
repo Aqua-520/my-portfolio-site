@@ -9,6 +9,9 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // 导入tailwindcss
 import tailwindcss from '@tailwindcss/vite'
+// 导入icon
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -21,12 +24,40 @@ export default defineConfig({
     vue(),
     vueDevTools(),
     AutoImport({
-      resolvers: [ElementPlusResolver()],
+      // 自动导入 Vue 相关函数
+      imports: ['vue', 'vue-router', 'pinia'],
+      resolvers: [
+        ElementPlusResolver(),
+        // 自动导入图标组件
+        IconsResolver({
+          prefix: 'Icon',
+          enabledCollections: ['ep', 'lucide'],
+        }),
+      ],
+      dts: 'src/auto-imports.d.ts',
+      // 生成 eslint 配置文件
+      eslintrc: {
+        enabled: true,
+      },
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+        ElementPlusResolver(),
+        // 自动注册图标组件
+        IconsResolver({
+          enabledCollections: ['ep', 'lucide'],
+          alias: {
+            park: 'icon-park',
+          },
+        }),
+      ],
+      dts: 'src/components.d.ts',
     }),
     tailwindcss(),
+    Icons({
+      autoInstall: true,
+      compiler: 'vue3',
+    }),
   ],
   resolve: {
     alias: {

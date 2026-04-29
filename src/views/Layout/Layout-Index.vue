@@ -1,14 +1,11 @@
 <script setup>
-// 按需引入字体图标
-import { Home, User, Wrench, FileText, Heart, Compass } from 'lucide-vue-next'
-
 const menuList = [
-  { name: '首页', path: '/home', icon: Home },
-  { name: '个人信息', path: '/about', icon: User },
-  { name: '擅长技术', path: '/skills', icon: Wrench },
-  { name: '作品集', path: '/projects', icon: FileText },
-  { name: '我的爱好', path: '/hobbies', icon: Heart },
-  { name: '成长轨迹', path: '/timeline', icon: Compass },
+  { name: '首页', path: '/home', icon: IconLucideHome },
+  { name: '个人信息', path: '/about', icon: IconLucideUser },
+  { name: '擅长技术', path: '/skills', icon: IconLucideWrench },
+  { name: '作品集', path: '/projects', icon: IconLucideFileText },
+  { name: '我的爱好', path: '/hobbies', icon: IconLucideHeart },
+  { name: '成长轨迹', path: '/timeline', icon: IconLucideCompass },
 ]
 </script>
 

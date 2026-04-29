@@ -1,42 +1,60 @@
+<script setup>
+// 核心修正：直接使用图标的变量名，不要加引号。
+// 因为配置了自动导入，Vite 会识别这些变量并自动 import 对应的图标组件对象。
+const hobbies = [
+  {
+    id: 'travel',
+    title: '全球探索 / 环游世界',
+    desc: '热衷于探索全球版图，在步履不停中追求更先进、更公平的高维度生活环境。比起安于现状，我更向往那种充满活力与自由的秩序，在跨越边界的过程中，不断寻找更广阔的自我表达空间。',
+    icon: IconLucidePlane,
+    tags: ['#无界探索', '#追求卓越', '#全球视野'],
+  },
+  {
+    id: 'anime',
+    title: 'ACG 深度参与者 / 二次元爱好者',
+    desc: '钟情于 BanG Dream! 及其代表作《Ave Mujica》带来的华丽张力与情感叙事。喜欢那些打破现实边界的跨媒体表达，作为见证者，在角色情感与乐队精神的交织中寻找那份最纯粹的二次元共鸣。',
+    icon: IconLucideSparkles,
+    tags: ['#BanGDream', '#AveMujica', '#二次元'],
+  },
+  {
+    id: 'lifestyle',
+    title: '生活方式 / 咖啡因补给',
+    desc: '习惯在下午开启咖啡因模式，无论是 Monster 还是咖啡，都是我逻辑建模与深夜 Debug 的高效“燃料”。比起依赖，我更享受它带来的状态切换，支撑起从午后到凌晨的开发灵感。',
+    icon: IconLucideZap,
+    tags: ['#补给状态', '#深夜Debug', '#极客作息'],
+  },
+]
+</script>
+
 <template>
   <div class="hobbies-container">
-    <div class="hobby-card music">
-      <div class="hobby-icon">🎮</div>
-      <div class="hobby-info">
-        <h3>Maimai DX / 音游玩家</h3>
-        <p>Rating: 13,468 (Gold Tier)</p>
-        <span class="tag">#追求极致</span> <span class="tag">#手速挑战</span>
+    <div v-for="hobby in hobbies" :key="hobby.id" :class="['hobby-card', hobby.id]">
+      <div class="hobby-icon">
+        <el-icon>
+          <component :is="hobby.icon" />
+        </el-icon>
       </div>
-    </div>
-
-    <div class="hobby-card anime">
-      <div class="hobby-icon">🎸</div>
       <div class="hobby-info">
-        <h3>二次元 / 乐队番痴迷</h3>
-        <p>《MyGO!!!!!》忠实粉丝，瑞希/爱音推。</p>
-        <span class="tag">#迷子でも進め</span> <span class="tag">#情感共鸣</span>
-      </div>
-    </div>
-
-    <div class="hobby-card travel">
-      <div class="hobby-icon">☕</div>
-      <div class="hobby-info">
-        <h3>生活方式 / 能量补给</h3>
-        <p>Monster 能量饮料重度用户，资深熬夜选手。</p>
-        <span class="tag">#咖啡因转化代码</span>
+        <h3>{{ hobby.title }}</h3>
+        <p>{{ hobby.desc }}</p>
+        <span v-for="tag in hobby.tags" :key="tag" class="tag">
+          {{ tag }}
+        </span>
       </div>
     </div>
 
     <div class="passion-quote">
-      <p>“既然能把高难曲目练到 Full Combo，<br />我也一定能把业务逻辑磨到完美运行。”</p>
-      <el-button class="apply-btn" @click="$router.push('/about')"
-        >我想入行，给个面试机会吧 ✨</el-button
-      >
+      <p>
+        “在旋律中见证艺术的张力，在代码中构建自由的秩序。<br />
+        借午后的一点补给，跨越边界，去抵达更广阔的高维度世界。”
+      </p>
+      <el-button class="apply-btn"> 一起探索更先进的未来 ✨ </el-button>
     </div>
   </div>
 </template>
 
 <style scoped>
+/* 样式部分保持不变，省略以节省篇幅... */
 .hobbies-container {
   padding: 40px;
   display: flex;
@@ -56,7 +74,9 @@
   gap: 20px;
   box-shadow: 0 4px 12px rgba(255, 105, 180, 0.1);
   border: 1px solid #fff0f6;
-  transition: transform 0.3s;
+  transition:
+    transform 0.3s,
+    border-color 0.3s;
 }
 
 .hobby-card:hover {
@@ -65,36 +85,69 @@
 }
 
 .hobby-icon {
-  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px; /* 确保图标够大 */
+  color: #ff69b4;
+  width: 60px;
+  height: 60px;
+  background: #fff0f6;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hobby-info {
+  flex: 1;
 }
 
 .hobby-info h3 {
   color: #ff69b4;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.hobby-info p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
 }
 
 .tag {
   font-size: 12px;
   color: #ff85c0;
   background: #fff0f6;
-  padding: 2px 8px;
-  border-radius: 10px;
-  margin-right: 5px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin-right: 8px;
+  display: inline-block;
+  border: 1px solid #ffe3ee;
 }
 
 .passion-quote {
   margin-top: 50px;
   text-align: center;
   color: #666;
-  font-style: italic;
+  line-height: 1.8;
 }
 
 .apply-btn {
-  margin-top: 20px;
-  background-color: #ff69b4 !important;
+  margin-top: 25px;
+  background: linear-gradient(90deg, #ff85c0 0%, #ff69b4 100%) !important;
   color: white !important;
   border: none !important;
-  border-radius: 20px;
-  padding: 12px 25px !important;
+  border-radius: 25px;
+  padding: 12px 30px !important;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+  transition: all 0.3s;
+}
+
+.apply-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(255, 105, 180, 0.4);
 }
 </style>

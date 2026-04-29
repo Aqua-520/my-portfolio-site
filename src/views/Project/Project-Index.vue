@@ -10,6 +10,7 @@ const projects = ref([
     tags: ['Vue 3', 'Pinia', 'Sku', 'Element Plus'],
     date: '2026.03',
     image: new URL('@/assets/picture/小兔鲜宣传图.png', import.meta.url).href,
+    demoUrl: '',
     githubUrl: '',
   },
   {
@@ -20,12 +21,13 @@ const projects = ref([
     tags: ['Vue 3', 'Vite', 'Scoped CSS'],
     date: '2026.04',
     image: new URL('@/assets/picture/个人网站宣传图.png', import.meta.url).href,
-    githubUrl: '',
+    demoUrl: 'https://aqua-520.github.io/my-portfolio-site/#/about',
+    githubUrl: ' https://github.com/Aqua-520/my-portfolio-site',
   },
 ])
 
 /* 
-  跳转到对应的gitHub仓库地址
+  跳转到对应的仓库，新开标签页
 */
 const openLink = (url) => {
   if (url) window.open(url, '_blank')
@@ -42,11 +44,12 @@ const openLink = (url) => {
     <div class="project-grid">
       <!-- 几个卡片 -->
       <div v-for="(project, index) in projects" :key="index" class="project-card">
-        <div class="card-cover" @click="openLink(project.githubUrl)">
+        <!-- 点击图片打开演示网站 -->
+        <div class="card-cover" @click="openLink(project.demoUrl)">
           <img v-if="project.image" :src="project.image" :alt="project.title" />
           <div v-else class="placeholder">Project Image</div>
           <div class="cover-mask">
-            <el-button class="pink-btn" round>查看仓库</el-button>
+            <el-button class="pink-btn" round>查看演示</el-button>
           </div>
         </div>
 
@@ -66,7 +69,7 @@ const openLink = (url) => {
 
           <div class="card-footer">
             <el-link class="pink-link" :underline="false" @click="openLink(project.githubUrl)">
-              查看代码 <el-icon class="el-icon--right"><Link /></el-icon>
+              查看代码仓库 <el-icon class="el-icon--right"><i-lucide-link /></el-icon>
             </el-link>
             <span class="date-text">{{ project.date }}</span>
           </div>

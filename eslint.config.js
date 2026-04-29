@@ -4,6 +4,9 @@ import js from '@eslint/js'
 import pluginVue from 'eslint-plugin-vue'
 import pluginOxlint from 'eslint-plugin-oxlint'
 import skipFormatting from 'eslint-config-prettier/flat'
+import fs from 'node:fs'
+
+const autoImportGlobals = JSON.parse(fs.readFileSync('./.eslintrc-auto-import.json', 'utf-8'))
 
 export default defineConfig([
   {
@@ -17,6 +20,7 @@ export default defineConfig([
     languageOptions: {
       globals: {
         ...globals.browser,
+        ...autoImportGlobals.globals,
       },
     },
   },
