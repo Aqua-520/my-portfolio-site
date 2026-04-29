@@ -12,6 +12,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // 设置仓库名
+  base: '/my-portfolio-site/', // 必须和仓库名一致，前后都要有斜杠
   plugins: [
     vue(),
     vueDevTools(),
