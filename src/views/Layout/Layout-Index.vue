@@ -110,6 +110,8 @@ onUnmounted(() => {
   align-items: center;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
+  min-height: -webkit-fill-available;
   background-color: #f0f2f5;
   overflow: hidden;
 }
@@ -233,10 +235,12 @@ onUnmounted(() => {
 
 .container.mobile-layout {
   width: 100%;
-  height: calc(100% - 60px);
+  height: calc(100vh - 60px);
+  height: calc(100dvh - 60px);
   margin-top: 60px;
   max-width: 100vw;
   max-height: 100vh;
+  max-height: 100dvh;
   border-radius: 0;
   box-shadow: none;
 }
@@ -267,6 +271,7 @@ onUnmounted(() => {
   transform: translateX(-100%);
   border-right: none;
   background: white;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .left-nav.mobile-nav.is-open {
@@ -363,6 +368,7 @@ onUnmounted(() => {
   padding: var(--content-padding);
   scrollbar-gutter: stable both-edges;
   position: relative;
+  -webkit-overflow-scrolling: touch;
 }
 
 .right-content > div {
@@ -371,6 +377,18 @@ onUnmounted(() => {
   left: var(--content-padding);
   width: calc(100% - (var(--content-padding) * 2));
   min-height: calc(100% - (var(--content-padding) * 2));
+}
+
+@media (max-width: 992px) {
+  .right-content {
+    padding-bottom: calc(var(--content-padding) + env(safe-area-inset-bottom));
+  }
+
+  .right-content::after {
+    content: '';
+    display: block;
+    height: calc(60px + env(safe-area-inset-bottom));
+  }
 }
 
 /* 遮罩层动画 */
