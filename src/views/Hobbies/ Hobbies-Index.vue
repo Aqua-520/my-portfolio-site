@@ -28,6 +28,13 @@ const hobbies = [
 
 <template>
   <div class="hobbies-container">
+    <!-- 头部标题：已由作品集改为个人特质/爱好 -->
+    <div class="header-section">
+      <h2 class="title">灵魂共鸣 / <span>Resonance</span></h2>
+      <div class="underline"></div>
+      <p class="subtitle">在代码之外，探索次元边界与生活的无限可能</p>
+    </div>
+    <!-- 底部卡片 -->
     <div v-for="hobby in hobbies" :key="hobby.id" :class="['hobby-card', hobby.id]">
       <div class="hobby-icon">
         <el-icon>
@@ -54,9 +61,49 @@ const hobbies = [
 </template>
 
 <style scoped>
+/* 头部标题 */
+/* 头部 */
+.header-section {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  transition: font-size var(--transition-base);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.8rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+}
+
+.title span {
+  color: #ff69b4; /* 核心粉 */
+}
+
+.underline {
+  width: 60px;
+  height: 4px;
+  background-color: #ff69b4;
+  margin: 0 auto 20px;
+  border-radius: 2px;
+}
+
+.subtitle {
+  color: #5e6d82;
+  font-size: 1.1rem;
+}
+
 /* 样式部分保持不变，省略以节省篇幅... */
 .hobbies-container {
-  padding: 40px;
+  padding: 0 40px 40px 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;

@@ -48,6 +48,12 @@ const projectHistory = ref([
 </script>
 <template>
   <div class="growth-timeline">
+    <header class="resume-header">
+      <div class="title-wrapper">
+        <h2 class="main-title">时间线</h2>
+        <div class="title-line"></div>
+      </div>
+    </header>
     <el-timeline>
       <el-timeline-item
         v-for="(item, index) in projectHistory"
@@ -86,6 +92,28 @@ const projectHistory = ref([
 </template>
 
 <style scoped>
+.resume-header {
+  margin-bottom: 25px;
+}
+
+.main-title {
+  font-size: 26px;
+  color: var(--text-main);
+  margin: 0;
+  font-weight: 600;
+}
+
+.title-line {
+  width: 40px;
+  height: 4px;
+  background: var(--primary-pink);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+/* 强制覆盖 el-timeline 容器的左侧内边距 */
+:deep(.el-timeline.is-start) {
+  padding-left: 0 !important;
+}
 .growth-timeline {
   padding: 20px;
   max-width: 900px;
